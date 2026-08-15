@@ -20,6 +20,11 @@ public class PlaySoundsFromList : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
     }
+    private void Start()
+    {
+        audioSource.loop = shouldLoop;
+        RandomClip();
+    }
 
     public void NextClip()
     {
