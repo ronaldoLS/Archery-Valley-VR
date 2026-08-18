@@ -37,6 +37,7 @@ public class PullInteraction : XRBaseInteractable
             notch.transform.localPosition.y,
             0f
         );
+        UpdateString();
     }
 
     public override void ProcessInteractable(
