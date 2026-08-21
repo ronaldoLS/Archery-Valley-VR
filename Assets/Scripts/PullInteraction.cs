@@ -12,9 +12,7 @@ public class PullInteraction : XRBaseInteractable
     public GameObject notch;
     public float pullAmount { get; private set; } = 0.0f;
 
-
     private LineRenderer _lineRenderer;
-    private Vector3 initialPullPosition;
     private IXRSelectInteractor pullingInteractor = null;
 
     protected override void Awake()
@@ -26,7 +24,6 @@ public class PullInteraction : XRBaseInteractable
     public void SetPullInteractor(SelectEnterEventArgs args)
     {
         pullingInteractor = args.interactorObject;
-        initialPullPosition = pullingInteractor.transform.position;
     }
 
     public void Release()
@@ -52,29 +49,28 @@ public class PullInteraction : XRBaseInteractable
         {
             if (isSelected)
             {
-                Vector3 currentPosition = pullingInteractor.transform.position;
-                Vector3 pullDelta = currentPosition - initialPullPosition;
-
-                pullAmount = CalculatePull(pullDelta);
+                Vector3 pullPosition = pullingInteractor.transform.position;
+                pullAmount = CalculatePull(pullPosition);
 
                 UpdateString();
             }
         }
     }
 
-    private float CalculatePull(Vector3 pullDelta)
+    private float CalculatePull(Vector3 pullPosition)
     {
+        Vector3 pullDirection = pullPosition - start.position;
         Vector3 targetDirection = end.position - start.position;
         float maxLength = targetDirection.magnitude;
 
         targetDirection.Normalize();
 
         float pullValue = Vector3.Dot(
-            pullDelta,
+            pullDirection,
             targetDirection
         ) / maxLength;
 
-        return Mathf.Clamp01(pullValue);    
+        return Mathf.Clamp(pullValue, 0, 1);
     }
 
     private void UpdateString()
