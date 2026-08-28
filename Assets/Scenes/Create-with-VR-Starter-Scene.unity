@@ -4285,6 +4285,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5041384380534773200, guid: 1b20af7329aa27942bb51f6096d97a8c, type: 3}
   m_PrefabInstance: {fileID: 102877866}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &677664819 stripped
+CapsuleCollider:
+  m_CorrespondingSourceObject: {fileID: 5849622115351749251, guid: 1e9a258e05a2b3a4cb27239fa92132a8, type: 3}
+  m_PrefabInstance: {fileID: 8314802368019431147}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &688024132
 GameObject:
   m_ObjectHideFlags: 0
@@ -11705,7 +11710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2376113698792673254, guid: 1e9a258e05a2b3a4cb27239fa92132a8, type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2488244459252009436, guid: 1e9a258e05a2b3a4cb27239fa92132a8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11715,6 +11720,14 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 130009822}
+    - target: {fileID: 2722185328835535848, guid: 1e9a258e05a2b3a4cb27239fa92132a8, type: 3}
+      propertyPath: m_Colliders.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722185328835535848, guid: 1e9a258e05a2b3a4cb27239fa92132a8, type: 3}
+      propertyPath: 'm_Colliders.Array.data[0]'
+      value: 
+      objectReference: {fileID: 677664819}
     - target: {fileID: 2722185328835535848, guid: 1e9a258e05a2b3a4cb27239fa92132a8, type: 3}
       propertyPath: m_InteractionLayers.m_Bits
       value: 3
