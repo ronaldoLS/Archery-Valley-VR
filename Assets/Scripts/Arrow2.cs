@@ -17,26 +17,24 @@ public class Arrow2 : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (isNocked)
-        {
-            Vector3 positionDifference = pullInteraction.Notch.position - arrowNock.position;
-
-            transform.position += positionDifference;
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Notch"))
         {
             isNocked = true;
+
             grabInteractable.enabled = false;
             rb.isKinematic = true;
+
+            transform.SetParent(pullInteraction.Notch);
+            transform.rotation = pullInteraction.Notch.rotation;
+
+            Vector3 offset = pullInteraction.Notch.position - arrowNock.position;
+
+            transform.position += offset;
 
             Debug.Log("Flecha encaixada!");
         }
     }
+
 }
