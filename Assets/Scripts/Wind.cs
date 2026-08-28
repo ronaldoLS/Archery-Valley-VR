@@ -5,6 +5,7 @@ using System.Collections;
 public class Wind : MonoBehaviour
 {
     [SerializeField] private AudioClip _windSound;
+    [SerializeField] private bool _debugMode = false;
 
     private AudioSource _audioSource;
     private float _minSpeed = 0.1f;
@@ -35,12 +36,14 @@ public class Wind : MonoBehaviour
         if (_isChangingVolume)
         {            
             _audioSource.volume = Mathf.Lerp(_audioSource.volume, _targetVolume, _currentSpeed * Time.deltaTime);
-            Debug.Log("increasing wind volume: " + _audioSource.volume);
+            if (_debugMode)
+                Debug.Log("increasing wind volume: " + _audioSource.volume);
             if (Mathf.Abs(_audioSource.volume - _targetVolume) < 0.01f)
             {
                 _audioSource.volume = _targetVolume;
                 _isChangingVolume = false;
-                Debug.Log("finished changing wind volume: " + _audioSource.volume);
+                if (_debugMode)
+                    Debug.Log("finished changing wind volume: " + _audioSource.volume);
             }
 
         }
@@ -56,8 +59,8 @@ public class Wind : MonoBehaviour
                 _currentSpeed = RandomSpeed();
                 _isChangingVolume = true;
             }
-
-            Debug.Log("can increase wind volume: " + _isChangingVolume);
+            if (_debugMode)
+                Debug.Log("can increase wind volume: " + _isChangingVolume);
 
             yield return new WaitForSeconds(RandomInterval());
         }

@@ -26,16 +26,8 @@ public class ArrowSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_bow.isSelected && _arrowNotched == false)
-        {
-            _arrowNotched = true;
-            StartCoroutine("DelayedSpawn");
-        }
 
-        if (!_bow.isSelected && _currentArrow != null)
-        {
-            Destroy(_currentArrow);
-        }
+        
     }
 
     private void NotchEmpty(float value)
@@ -47,6 +39,14 @@ public class ArrowSpawner : MonoBehaviour
     IEnumerator DelayedSpawn()
     {
         yield return new WaitForSeconds(1f);
-        _currentArrow = Instantiate(arrow, notch.transform);
+        SpawnArrow(); 
+    }
+    public void SpawnArrow()
+    {
+        if (!_arrowNotched)
+        {
+            _currentArrow = Instantiate(arrow, notch.transform);
+            _arrowNotched = true;
+        }
     }
 }

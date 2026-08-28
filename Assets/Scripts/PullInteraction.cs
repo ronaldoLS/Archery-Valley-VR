@@ -12,6 +12,8 @@ public class PullInteraction : XRBaseInteractable
     public GameObject notch;
     public float pullAmount { get; private set; } = 0.0f;
 
+    public Transform Notch => notch.transform;
+
     private LineRenderer _lineRenderer;
     private IXRSelectInteractor pullingInteractor = null;
 
@@ -84,7 +86,7 @@ public class PullInteraction : XRBaseInteractable
         notch.transform.localPosition = new Vector3(
             notch.transform.localPosition.x,
             notch.transform.localPosition.y,
-            linePosition.z + 0.2f
+            linePosition.z 
         );
 
         _lineRenderer.SetPosition(1, linePosition);

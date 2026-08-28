@@ -1,26 +1,49 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
 public class Arrow : MonoBehaviour
 {
     public float speed = 10f;
     public Transform tip;
+    public Transform notch;
+    public XRGrabInteractable grabInteractable;
 
     private Rigidbody _rigidBody;
     private bool _inAir = false;
+    private bool _isNocked = true;
     private Vector3 _lastPosition = Vector3.zero;
 
     private void Awake()
     {
         _rigidBody = GetComponent<Rigidbody>();
-        PullInteraction.PullActionReleased += Release;
+        //PullInteraction.PullActionReleased += Release;
 
         Stop();
+    }
+    private void Update()
+    {
+        if (_isNocked)
+        {
+            if (grabInteractable.enabled)
+            {
+                grabInteractable.enabled = false;
+            }
+            transform.position = notch.position;
+            transform.rotation = notch.rotation;
+        }
+        else
+        {
+            if (!grabInteractable.enabled)
+            {
+                grabInteractable.enabled = true;
+            }
+        }
     }
 
     private void OnDestroy()
     {
-        PullInteraction.PullActionReleased -= Release;
+        //PullInteraction.PullActionReleased -= Release;
     }
 
     private void Release(float value)
@@ -72,7 +95,7 @@ public class Arrow : MonoBehaviour
             tip.position,
             out RaycastHit hitInfo))
         {
-            if (hitInfo.transform.gameObject.layer != 8)
+            if (hitInfo.transform.gameObject.layer != 7)
             {
                 if (hitInfo.transform.TryGetComponent(out Rigidbody body))
                 {
@@ -99,5 +122,18 @@ public class Arrow : MonoBehaviour
     {
         _rigidBody.useGravity = usePhysics;
         _rigidBody.isKinematic = !usePhysics;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Notch"))
+        {
+            _isNocked = true;
+            _inAir = false;
+            SetPhysics(false);
+            transform.position = notch.position;
+            transform.rotation = notch.rotation;
+        }
+
     }
 }
