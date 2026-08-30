@@ -16,6 +16,15 @@ public class Arrow2 : MonoBehaviour
         grabInteractable = GetComponent<XRGrabInteractable>();
         rb = GetComponent<Rigidbody>();
     }
+    private void OnEnable()
+    {
+        PullInteraction.PullActionReleased += ReleaseArrow;
+    }
+
+    private void OnDisable()
+    {
+        PullInteraction.PullActionReleased -= ReleaseArrow;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -36,5 +45,10 @@ public class Arrow2 : MonoBehaviour
             Debug.Log("Flecha encaixada!");
         }
     }
+    
 
+    private void ReleaseArrow(float pullAmount)
+    {
+        Debug.Log("Corda solta! Força: " + pullAmount);
+    }
 }
