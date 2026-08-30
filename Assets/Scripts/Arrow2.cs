@@ -6,10 +6,10 @@ public class Arrow2 : MonoBehaviour
     public PullInteraction pullInteraction;
     public Transform arrowNock;
 
-
     private XRGrabInteractable grabInteractable;
     private Rigidbody rb;
     private bool isNocked = false;
+    private bool canNock = true;
 
     private void Awake()
     {
@@ -28,7 +28,7 @@ public class Arrow2 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Notch"))
+        if (other.CompareTag("Notch") && canNock)
         {
             isNocked = true;
 
@@ -45,10 +45,24 @@ public class Arrow2 : MonoBehaviour
             Debug.Log("Flecha encaixada!");
         }
     }
-    
+
 
     private void ReleaseArrow(float pullAmount)
     {
-        Debug.Log("Corda solta! Força: " + pullAmount);
+        if (!isNocked)
+            return;
+
+        canNock = false;
+        isNocked = false;
+
+        transform.SetParent(null);
+
+        rb.isKinematic = false;
+
+        float force = pullAmount * 10f;
+
+        rb.AddForce(transform.forward * force, ForceMode.Impulse);
+
+        Debug.Log("Flecha disparada! Força: " + force);
     }
 }
