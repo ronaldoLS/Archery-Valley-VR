@@ -5,6 +5,7 @@ public class Arrow2 : MonoBehaviour
 {
     public PullInteraction pullInteraction;
     public Transform arrowNock;
+    public float maxForce = 30f;
 
     private XRGrabInteractable grabInteractable;
     private Rigidbody rb;
@@ -59,7 +60,7 @@ public class Arrow2 : MonoBehaviour
 
         rb.isKinematic = false;
 
-        float force = pullAmount * 10f;
+        float force = pullAmount * maxForce;
 
         rb.AddForce(transform.forward * force, ForceMode.Impulse);
 
