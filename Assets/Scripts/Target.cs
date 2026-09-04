@@ -6,25 +6,23 @@ public class Target : MonoBehaviour
     {
         Debug.Log("O alvo foi atingido por: " + collision.gameObject.name);
 
-        // Pega a posição exata onde a flecha bateu
         ContactPoint contact = collision.GetContact(0);
 
         Debug.Log("Normal do alvo: " + contact.normal);
 
-        // Para a flecha
         Rigidbody arrowRb = collision.rigidbody;
 
         if (arrowRb != null)
         {
             arrowRb.linearVelocity = Vector3.zero;
             arrowRb.angularVelocity = Vector3.zero;
-
-            // Faz a flecha deixar de ser afetada pela física
             arrowRb.isKinematic = true;
         }
 
-        // Coloca a flecha exatamente no ponto de impacto
-        collision.transform.position = contact.point;
-    }
+        // Coloca a flecha ligeiramente para dentro do alvo
+        collision.transform.position = contact.point - contact.normal * 0.3f;
 
+        // Orienta a flecha corretamente
+        collision.transform.rotation = Quaternion.LookRotation(contact.normal);
+    }
 }
