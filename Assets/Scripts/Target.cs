@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Target : MonoBehaviour
@@ -16,8 +17,19 @@ public class Target : MonoBehaviour
     [SerializeField] private int redPoints = 7;
     [SerializeField] private int yellowPoints = 10;
 
+    private int totalScore = 0;
+    private readonly HashSet<GameObject> processedArrows = new HashSet<GameObject>();
+
     private void OnCollisionEnter(Collision collision)
     {
+        GameObject arrow = collision.gameObject;
+
+        // Impede que a mesma flecha seja processada mais de uma vez
+        if (processedArrows.Contains(arrow))
+            return;
+
+        processedArrows.Add(arrow);
+
         ContactPoint contact = collision.GetContact(0);
 
         // Collider da região do alvo que recebeu o impacto
