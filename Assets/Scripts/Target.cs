@@ -17,16 +17,38 @@ public class Target : MonoBehaviour
     [SerializeField] private int redPoints = 7;
     [SerializeField] private int yellowPoints = 10;
 
+    [Header("Impacto da flecha")]
+    [SerializeField] private float minimumImpactImpulse = 1.1f;
+
+
     private int totalScore = 0;
     private readonly HashSet<GameObject> processedArrows = new HashSet<GameObject>();
 
     private void OnCollisionEnter(Collision collision)
     {
-        GameObject arrow = collision.gameObject;
+
+        // Só permite que a ponta da flecha crive no alvo
+        if (collision.collider.gameObject.name != "tip")
+            return;
+
+        GameObject arrow = collision.transform.root.gameObject;
 
         // Impede que a mesma flecha seja processada mais de uma vez
         if (processedArrows.Contains(arrow))
             return;
+
+
+        float impactSpeed = collision.relativeVelocity.magnitude;
+        float impactImpulse = collision.impulse.magnitude;
+
+        Debug.Log("Velocidade do impacto: " + impactSpeed);
+        Debug.Log("Impulso do impacto: " + impactImpulse);
+
+        if (impactImpulse < minimumImpactImpulse)
+        {
+            Debug.Log("Impacto fraco. A flecha não ficou presa.");
+            return;
+        }
 
         processedArrows.Add(arrow);
 
@@ -37,8 +59,11 @@ public class Target : MonoBehaviour
 
         int points = GetPoints(hitCollider);
 
+        totalScore += points;
+
         Debug.Log("Região atingida: " + hitCollider.gameObject.name);
-        Debug.Log("Pontuação: " + points);
+        Debug.Log("Pontuação: " + points);        
+        Debug.Log("Pontuação total: " + totalScore);
 
         Rigidbody arrowRb = collision.rigidbody;
 
@@ -51,11 +76,8 @@ public class Target : MonoBehaviour
 
         // Posiciona a flecha parcialmente dentro do alvo
         collision.transform.position =
-            contact.point - contact.normal * 0.3f;
+            contact.point - contact.normal * 0.15f;
 
-        // Mantém a orientação correta da flecha
-        collision.transform.rotation =
-            Quaternion.LookRotation(contact.normal);
     }
 
     private int GetPoints(Collider hitCollider)

@@ -5,7 +5,10 @@ public class Arrow2 : MonoBehaviour
 {
     public PullInteraction pullInteraction;
     public Transform arrowNock;
-    public float maxForce = 30f;
+    public float maxForce = 10f;
+
+    [Header("Rotação da flecha no voo")]
+    public float downwardTorque = 0.003f;
 
     private XRGrabInteractable grabInteractable;
     private Rigidbody rb;
@@ -17,6 +20,7 @@ public class Arrow2 : MonoBehaviour
         grabInteractable = GetComponent<XRGrabInteractable>();
         rb = GetComponent<Rigidbody>();
     }
+
     private void OnEnable()
     {
         PullInteraction.PullActionReleased += ReleaseArrow;
@@ -25,6 +29,14 @@ public class Arrow2 : MonoBehaviour
     private void OnDisable()
     {
         PullInteraction.PullActionReleased -= ReleaseArrow;
+    }
+
+    private void FixedUpdate()
+    {
+        if (!isNocked && !rb.isKinematic)
+        {
+            rb.AddTorque(transform.right * downwardTorque, ForceMode.Force);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,7 +58,6 @@ public class Arrow2 : MonoBehaviour
             Debug.Log("Flecha encaixada!");
         }
     }
-
 
     private void ReleaseArrow(float pullAmount)
     {

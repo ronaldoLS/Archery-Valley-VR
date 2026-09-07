@@ -46,7 +46,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1547580055558530200}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 0.06
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -210,6 +210,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Arrow2
   pullInteraction: {fileID: 0}
   arrowNock: {fileID: 2372185173933614105}
+  maxForce: 30
+  downwardTorque: 0.003
 --- !u!1 &1681140821528779090
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,6 +658,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7406162528873407768}
+  - component: {fileID: 1830271694593998530}
   m_Layer: 0
   m_Name: tip
   m_TagString: Untagged
@@ -680,6 +683,29 @@ Transform:
   - {fileID: 192750540546018600}
   m_Father: {fileID: 5096606263195393991}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1830271694593998530
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472754895318614841}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.005
+  m_Height: 0.02
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: -0.01}
 --- !u!1 &7490263659090558563
 GameObject:
   m_ObjectHideFlags: 0
