@@ -22,6 +22,7 @@ public class Target : MonoBehaviour
 
 
     private int totalScore = 0;
+    public int TotalScore => totalScore;    
     private readonly HashSet<GameObject> processedArrows = new HashSet<GameObject>();
 
     private void OnCollisionEnter(Collision collision)
@@ -99,4 +100,9 @@ public class Target : MonoBehaviour
 
         return 0;
     }
+
+    public float DistanceToPlayer(Transform player)
+    {
+        return Vector3.Distance(transform.position, player.position);
+    }   
 }
