@@ -17,8 +17,12 @@ public class Target : MonoBehaviour
     [SerializeField] private int redPoints = 7;
     [SerializeField] private int yellowPoints = 10;
 
+
+    [SerializeField] private GameManager gameManager;
+
     [Header("Impacto da flecha")]
     [SerializeField] private float minimumImpactImpulse = 1.1f;
+
 
 
     private int totalScore = 0;
@@ -58,12 +62,18 @@ public class Target : MonoBehaviour
         // Collider da região do alvo que recebeu o impacto
         Collider hitCollider = contact.thisCollider;
 
-        int points = GetPoints(hitCollider);
+        int basePoints = GetPoints(hitCollider);
+
+        int multiplier = gameManager.CurrentMultiplier;
+
+        int points = basePoints * multiplier;
 
         totalScore += points;
 
         Debug.Log("Região atingida: " + hitCollider.gameObject.name);
-        Debug.Log("Pontuação: " + points);        
+        Debug.Log("Pontos base: " + basePoints);
+        Debug.Log("Multiplicador: x" + multiplier);
+        Debug.Log("Pontos ganhos: " + points);
         Debug.Log("Pontuação total: " + totalScore);
 
         Rigidbody arrowRb = collision.rigidbody;
