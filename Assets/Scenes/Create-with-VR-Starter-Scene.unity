@@ -5309,7 +5309,7 @@ GameObject:
   - component: {fileID: 667928666}
   - component: {fileID: 667928665}
   m_Layer: 5
-  m_Name: Switch hand Button (1)
+  m_Name: restart Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5357,8 +5357,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.97735846, g: 0.6251406, b: 0.6251406, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.51886785, b: 0.9198248, a: 1}
+    m_PressedColor: {r: 0.7433963, g: 0.391335, b: 0.68471944, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -5378,7 +5378,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 667928666}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1045395886}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &667928666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6384,6 +6396,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5041384380534773200, guid: 1b20af7329aa27942bb51f6096d97a8c, type: 3}
   m_PrefabInstance: {fileID: 138293795}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &898713804
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 898713805}
+  m_Layer: 7
+  m_Name: Bow Attach right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &898713805
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898713804}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5010905614370395172}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &928476527 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8128245394302044989, guid: cc0a254fe02451e4a98f72cf24cae73c, type: 3}
@@ -7158,6 +7201,13 @@ MonoBehaviour:
   - {fileID: 1594109170}
   - {fileID: 1478906013}
   currentMultiplier: 1
+  bow: {fileID: 8314802368019431148}
+  leftBowAttach: {fileID: 1684343083}
+  rightBowAttach: {fileID: 898713805}
+  leftHandVisual: {fileID: 1989048319}
+  rightHandVisual: {fileID: 529881818}
+  leftRay: {fileID: 5508477951837408593}
+  rightRay: {fileID: 7947818466574211522}
 --- !u!4 &1045395887
 Transform:
   m_ObjectHideFlags: 0
@@ -8321,7 +8371,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1656580335}
-  - {fileID: 8314802368019431148}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1282311874
@@ -8827,11 +8876,11 @@ MonoBehaviour:
   m_EnableTouchInput: 1
   m_EnableGamepadInput: 1
   m_EnableJoystickInput: 1
-  m_PointAction: {fileID: 0}
-  m_LeftClickAction: {fileID: 0}
-  m_MiddleClickAction: {fileID: 0}
-  m_RightClickAction: {fileID: 0}
-  m_ScrollWheelAction: {fileID: 0}
+  m_PointAction: {fileID: 2869410428622933342, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_LeftClickAction: {fileID: 1855836014308820768, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_MiddleClickAction: {fileID: -6289560987278519447, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_RightClickAction: {fileID: -2562941478296515153, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_ScrollWheelAction: {fileID: 5825226938762934180, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_NavigateAction: {fileID: 0}
   m_SubmitAction: {fileID: 0}
   m_CancelAction: {fileID: 0}
@@ -10113,6 +10162,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5096606263195393991, guid: cc0a254fe02451e4a98f72cf24cae73c, type: 3}
   m_PrefabInstance: {fileID: 141778909}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1684343082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1684343083}
+  m_Layer: 7
+  m_Name: Bow Attach left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1684343083
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1684343082}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2585083446234198461}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1686131258 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5041384380534773200, guid: 1b20af7329aa27942bb51f6096d97a8c, type: 3}
@@ -11853,8 +11933,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.97735846, g: 0.6251406, b: 0.6251406, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.51886785, b: 0.9198248, a: 1}
+    m_PressedColor: {r: 0.7433963, g: 0.391335, b: 0.68471944, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -11874,7 +11954,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1938927099}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1045395886}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SwitchHand
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1938927099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13233,6 +13325,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1989048320}
+  - {fileID: 1684343083}
   - {fileID: 1690299796}
   - {fileID: 3148652181503817379}
   - {fileID: 6956472245217963140}
@@ -13592,6 +13685,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 529881819}
+  - {fileID: 898713805}
   - {fileID: 602914292}
   - {fileID: 4170055366461652940}
   - {fileID: 190389031534591417}
@@ -13616,7 +13710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &5555564888081902322
 GameObject:
   m_ObjectHideFlags: 0
@@ -13763,8 +13857,9 @@ Transform:
   - {fileID: 5010905614370395172}
   - {fileID: 2585083446234198461}
   - {fileID: 997612251}
-  - {fileID: 767947104}
   - {fileID: 432094119}
+  - {fileID: 8314802368019431148}
+  - {fileID: 767947104}
   m_Father: {fileID: 1858639813}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &6756130403255346757
@@ -14056,7 +14151,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferencePerformed: {fileID: 3279264004350380116, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     m_InputActionReferenceValue: {fileID: 0}
     m_ObjectReferenceObject: {fileID: 0}
     m_ManualPerformed: 0
@@ -14617,7 +14712,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1270579758}
+    m_TransformParent: {fileID: 6140488902814369571}
     m_Modifications:
     - target: {fileID: 2376113698792673254, guid: 1e9a258e05a2b3a4cb27239fa92132a8, type: 3}
       propertyPath: m_Center.z
@@ -14629,6 +14724,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2488244459252009436, guid: 1e9a258e05a2b3a4cb27239fa92132a8, type: 3}
       propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2722185328835535848, guid: 1e9a258e05a2b3a4cb27239fa92132a8, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2722185328835535848, guid: 1e9a258e05a2b3a4cb27239fa92132a8, type: 3}
@@ -14725,7 +14824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6321800363173187413, guid: 1e9a258e05a2b3a4cb27239fa92132a8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.38
+      value: 0.3800001
       objectReference: {fileID: 0}
     - target: {fileID: 6321800363173187413, guid: 1e9a258e05a2b3a4cb27239fa92132a8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14864,7 +14963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 130009822}
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 2147483648
   m_Handedness: 1
   m_AttachTransform: {fileID: 0}
   m_KeepSelectedTargetValid: 1
@@ -15036,7 +15135,7 @@ MonoBehaviour:
   m_HoverTimeToSelect: 0.5
   m_AutoDeselect: 0
   m_TimeToAutoDeselect: 3
-  m_EnableUIInteraction: 0
+  m_EnableUIInteraction: 1
   m_BlockInteractionsWithScreenSpaceUI: 0
   m_BlockUIOnInteractableSelection: 1
   m_ManipulateAttachTransform: 0
@@ -15075,7 +15174,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
       m_Flags: 0
-    m_InputActionReferencePerformed: {fileID: 0}
+    m_InputActionReferencePerformed: {fileID: -6395602842196007441, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     m_InputActionReferenceValue: {fileID: 0}
     m_ObjectReferenceObject: {fileID: 0}
     m_ManualPerformed: 0
