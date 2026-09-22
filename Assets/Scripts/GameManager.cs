@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject rightHandVisual;
 
     [Header("Ray")]
-    [SerializeField] private GameObject leftRay;
-    [SerializeField] private GameObject rightRay;
+    [SerializeField] private RayController leftRayController;
+    [SerializeField] private RayController rightRayController;
 
     private bool bowInLeftHand = true;
 
@@ -74,17 +74,18 @@ public class GameManager : MonoBehaviour
     {
         Transform attach = leftHand ? leftBowAttach : rightBowAttach;
 
+        // Arco
         bow.SetParent(attach);
         bow.localPosition = Vector3.zero;
         bow.localRotation = Quaternion.identity;
 
-        // Esconde a mão que segura o arco
+        // Mãos
         leftHandVisual.SetActive(!leftHand);
         rightHandVisual.SetActive(leftHand);
 
-        // O Ray fica na mão oposta ao arco
-        leftRay.SetActive(!leftHand);
-        rightRay.SetActive(leftHand);
+        // Ray fica na mão oposta ao arco
+        leftRayController.SetControl(!leftHand);
+        rightRayController.SetControl(leftHand);
     }
     public void RestartGame()
     {
